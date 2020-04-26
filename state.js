@@ -9,6 +9,7 @@ class SimpelStoreState {
  }
 
  setValue(value) {
+   try{
    var address = makeAddress(value);
    var stateEntriesSend = {}
    stateEntriesSend[address] = Buffer.from(value);
@@ -17,6 +18,11 @@ class SimpelStoreState {
    }).catch(function(error) {
      console.error("Error", error)
    })
+  }
+  catch(e)
+  {
+    console.log("Caught");
+  }
  }
 
  getValue(value) {
