@@ -11,7 +11,7 @@ class SimpelStoreState {
  setValue(value) {
    var address = makeAddress(value);
    var stateEntriesSend = {}
-   stateEntriesSend[address] = Buffer.from("Hello! " + value);
+   stateEntriesSend[address] = Buffer.from(value);
    return  this.context.setState(stateEntriesSend, this.timeout).then(function(result) {
      console.log("Success", result)
    }).catch(function(error) {
@@ -29,6 +29,7 @@ class SimpelStoreState {
  }
 }
 
-const makeAddress = (x, label) => TP_NAMESPACE + _hash(x)
+const makeAddress = (claimPayload, label) => TP_NAMESPACE +
+    _hash(claimPayload.ProductID.value).substring(0, 16) 
 
 module.exports = SimpelStoreState;
