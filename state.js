@@ -20,6 +20,7 @@ class SimpelStoreState {
  }
 
  getValue(value) {
+   try{
    var address = makeAddress(value);
    return  this.context.getState([address], this.timeout).then(function(stateEntries) {
      Object.assign(this.stateEntries, stateEntries);
@@ -27,6 +28,13 @@ class SimpelStoreState {
      return  this.stateEntries;
    }.bind(this))
  }
+catch(e)
+{
+   console.log("Caught");
+}
+finally {
+  console.log("entering and leaving the finally block");
+}
 }
 
 const makeAddress = (claimPayload, label) => TP_NAMESPACE +
